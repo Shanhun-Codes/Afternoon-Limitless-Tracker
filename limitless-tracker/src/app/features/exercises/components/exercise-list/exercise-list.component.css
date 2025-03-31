@@ -1,0 +1,9 @@
+.exercise-list {
+    margin: 16px;
+}
+
+.exercise-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
