@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ExerciseService } from '../../../../shared/services/exercise.service';
 
@@ -8,18 +8,25 @@ import { ExerciseService } from '../../../../shared/services/exercise.service';
   templateUrl: './exercise-form.component.html',
   styleUrl: './exercise-form.component.css'
 })
-export class ExerciseFormComponent {
+export class ExerciseFormComponent implements AfterViewInit {
   private exerciseService = inject(ExerciseService)
-  name = ''
-  duration = 0
 
-  addExerciseHandler() {
-    this.exerciseService.addExercise(this.name, this.duration)
+  private form = viewChild.required<ElementRef<HTMLFormElement>>('form')
+
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit called: Form Element Available');
+    
+    this.form().nativeElement.addEventListener('submit', (event) => {
+      console.log("Form submitted");
+    })
+  }
+
+  addExerciseHandler(name: string, duration: number) {
+    this.exerciseService.addExercise(name, duration)
     this.resetFormHandler()
   }
 
   resetFormHandler() {
-    this.name = ''
-    this.duration = 0
+    this.form().nativeElement.reset()
   }
 }

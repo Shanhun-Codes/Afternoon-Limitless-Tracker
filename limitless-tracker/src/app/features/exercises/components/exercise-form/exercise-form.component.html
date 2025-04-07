@@ -1,9 +1,9 @@
-<form (ngSubmit)="addExerciseHandler()">
+<form #form (submit)="addExerciseHandler(nameInput.value, durationInput.value); $event.preventDefault()" >
   <div class="form-group">
     <input
       name="name"
       type="text"
-      [(ngModel)]="name"
+      #nameInput
       placeholder="Exercise Name"
       required
     />
@@ -12,12 +12,12 @@
     <input
       name="duration"
       type="number"
-      [(ngModel)]="duration"
+      #durationInput
       placeholder="Duration Time"
       required
     />
   </div>
 
-  <button class="button-primary" [disabled]="!name || duration <= 0 ">Add Exercise</button>
+  <button class="button-primary" [disabled]="!nameInput.value || durationInput.value <= 0 ">Add Exercise</button>
   <button class="button-clear" type="button" (click)="resetFormHandler()">Reset</button>
 </form>
