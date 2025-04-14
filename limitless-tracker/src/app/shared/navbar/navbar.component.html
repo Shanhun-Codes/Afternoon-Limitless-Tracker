@@ -1,0 +1,8 @@
+
+
+@if (isAuth) {
+    <a routerLink="/dashboard">Dashboard</a>
+    <button (click)="logoutHandler()">Logout</button>
+} @else {
+    <a routerLink="/login">Login</a>
+}
