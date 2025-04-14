@@ -1,4 +1,4 @@
-<form #form (submit)="addExerciseHandler(nameInput.value, durationInput.value); $event.preventDefault()" >
+<form #form (submit)="addExerciseHandler(nameInput.value, durationInput.value)" >
   <div class="form-group">
     <input
       name="name"
@@ -18,6 +18,6 @@
     />
   </div>
 
-  <button class="button-primary" [disabled]="!nameInput.value || durationInput.value <= 0 ">Add Exercise</button>
+  <button class="button-primary" >Add Exercise</button>
   <button class="button-clear" type="button" (click)="resetFormHandler()">Reset</button>
 </form>
